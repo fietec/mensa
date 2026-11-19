@@ -1,3 +1,82 @@
-.canvas {
-    border: 1px solid black;
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 20px;
+    font-family: Arial, sans-serif;
+    background: #f5f5f2;
+    color: #333;
+}
+
+h1 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+p {
+    color: #666;
+    margin-bottom: 16px;
+}
+
+.canvas-container {
+    max-width: 578px;
+    width: 100%;
+    border: 1px solid #ccc;
+    background: white;
+}
+
+canvas {
+    display: block;
+    width: 100%;
+    height: auto;
+    cursor: crosshair;
+}
+
+#actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    max-width: 578px;
+}
+
+button {
+    flex: 1;
+    padding: 11px 14px;
+    border: 1px solid #b8c4cf;
+    border-radius: 4px;
+    background: #e8edf1;
+    color: #34495e;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #dce4eb;
+}
+
+#share-btn {
+    background: #527b9e;
+    border-color: #527b9e;
+    color: white;
+}
+
+#share-btn:hover {
+    background: #426987;
+}
+
+@media (max-width: 480px) {
+    body {
+        margin: 14px;
+    }
+
+    #actions {
+        gap: 6px;
+    }
+
+    button {
+        padding: 12px 6px;
+        font-size: 13px;
+    }
 }
