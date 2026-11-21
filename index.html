@@ -9,8 +9,7 @@
   <body>
     Click to place marker:
     <div>
-      <canvas class="canvas">
-      </canvas>
+      <canvas class="canvas"></canvas>
     </div>
     <div id="actions">
       <button id="download-btn">Download</button>
@@ -27,9 +26,6 @@
     </footer>
     <script>
 
-      const imageName = "mensa-position.png";
-      let circle = null;
-
       function downloadImage() {
           if (!circle){
               alert("Please place a marker first!");
@@ -43,7 +39,7 @@
               }
 
               const link = document.createElement("a");
-              link.download = imageName;
+              link.download = outputImageName;
               link.href = URL.createObjectURL(blob);
               link.click();
 
@@ -62,7 +58,7 @@
                   console.error("Could not create image.");
                   return;
               }
-              const file = new File([blob], imageName, {type: "image/png"});
+              const file = new File([blob], outputImageName, {type: "image/png"});
 
               if (navigator.canShare && navigator.canShare({ files: [file] })) {
                   try {
@@ -87,21 +83,8 @@
           canvas.height = image.naturalHeight;
           context.drawImage(image, 0, 0);
       }
-      
-      const canvas = document.querySelector("canvas");
-      const context = canvas.getContext("2d");
-      const downloadBtn = document.getElementById("download-btn");
-      downloadBtn.onclick = downloadImage;
-      const shareBtn = document.getElementById("share-btn");
-      shareBtn.onclick = shareImage;
-      const clearBtn = document.getElementById("clear-btn");
-      clearBtn.onclick = clear;
-      
-      const image = new Image();
-      image.src = 'blueprint.png';
-      image.onload = clear;
 
-      canvas.onclick = function(event){
+      function handleClick(event){
           clear();
           const rect = canvas.getBoundingClientRect();
           const x = (event.clientX - rect.left) * (canvas.width / rect.width);
@@ -113,7 +96,23 @@
           context.strokeStyle = "red";
           context.lineWidth = 2;
           context.stroke();
-      };
+      }
+
+
+      document.getElementById("download-btn").onclick = downloadImage;
+      document.getElementById("share-btn").onclick = shareImage;
+      document.getElementById("clear-btn").onclick = clear;
+
+      const canvas = document.querySelector("canvas");
+      const context = canvas.getContext("2d");
+      canvas.onclick = handleClick;
+
+      const image = new Image();
+      image.src = 'blueprint.png';
+      image.onload = clear;
+
+      const outputImageName = "mensa-position.png";
+      let circle = null;
 
     </script>
   </body>
