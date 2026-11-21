@@ -1,1 +1,1 @@
-Just a simple tool to tell people where you sit and the uni mensa Passau.
+A very simple tool for sharing an image of your location at the university cafeteria Passau.
